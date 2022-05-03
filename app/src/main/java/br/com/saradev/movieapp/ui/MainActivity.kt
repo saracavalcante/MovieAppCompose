@@ -1,4 +1,4 @@
-package br.com.saradev.movieapp
+package br.com.saradev.movieapp.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
