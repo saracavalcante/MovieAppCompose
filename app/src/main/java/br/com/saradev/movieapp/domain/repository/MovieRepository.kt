@@ -1,7 +1,7 @@
 package br.com.saradev.movieapp.domain.repository
 
-import br.com.saradev.movieapp.data_remote.model.MovieList
+import br.com.saradev.movieapp.domain.model.Movie
 
 interface MovieRepository {
-    suspend fun getPopularMovies(): Result<MovieList>
+    suspend fun getPopularMovies(): List<Movie>
 }
