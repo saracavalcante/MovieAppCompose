@@ -1,10 +1,22 @@
 package br.com.saradev.movieapp.utils
 
-sealed class Resource<T>(
-    val data: T? = null,
-    val message: String? = null,
+data class Resource<out T>(
+    val status: Status,
+    val data: T?,
+    val message: String?,
 ) {
-    class Sucess<T>(data: T?) : Resource<T>(data = data)
-    class Loading<T>(message: String?) : Resource<T>()
-    class Error<T>(message: String?) : Resource<T>(message = message)
+    companion object {
+
+        fun <T> empty(): Resource<T> =
+            Resource(Status.EMPTY, null, null)
+
+        fun <T> success(data: T?): Resource<T> =
+            Resource(Status.SUCCESS, data, null)
+
+        fun <T> error(message: String, data: T?): Resource<T> =
+            Resource(Status.ERROR, data, message)
+
+        fun <T> loading(data: T?): Resource<T> =
+            Resource(Status.LOADING, data, null)
+    }
 }
