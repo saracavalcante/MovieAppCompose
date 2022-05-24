@@ -33,7 +33,7 @@ fun NavGraph() {
                 factory = HiltViewModelFactory(LocalContext.current, it)
             )
 
-            HomeScreen(viewModel, actions)
+            HomeScreen(actions)
         }
 
         composable(
