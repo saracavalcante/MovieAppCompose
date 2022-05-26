@@ -1,5 +1,6 @@
 package br.com.saradev.movieapp.domain.usecase
 
+import br.com.saradev.movieapp.data_remote.model.MovieDetailResponse
 import br.com.saradev.movieapp.data_remote.model.MovieResponse
 import br.com.saradev.movieapp.domain.repository.MovieRepository
 import br.com.saradev.movieapp.utils.Resource
@@ -9,8 +10,14 @@ import javax.inject.Inject
 class GetPopularMoviesUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
 ) {
-
     suspend operator fun invoke(apiKey: String): Flow<Resource<MovieResponse>> {
         return movieRepository.getPopularMovies(apiKey)
+    }
+
+    suspend operator fun invoke(
+        apiKey: String,
+        movieId: String,
+    ): Flow<Resource<MovieDetailResponse>> {
+        return movieRepository.getMovieDetails(apiKey, movieId)
     }
 }

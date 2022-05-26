@@ -48,13 +48,13 @@ class MovieViewModel @Inject constructor(
             getUpcomingMoviesUseCase.invoke(apiKey).collect {
                 when (it.status) {
                     Status.EMPTY -> {
-                        _popularMovies.emit(Resource.empty())
+                        _upcomingMovies.emit(Resource.empty())
                     }
                     Status.SUCCESS -> {
-                        _popularMovies.emit(Resource.success(it.data))
+                        _upcomingMovies.emit(Resource.success(it.data))
                     }
                     else -> {
-                        _popularMovies.emit(Resource.error(it.message.toString(), null))
+                        _upcomingMovies.emit(Resource.error(it.message.toString(), null))
                     }
                 }
             }
